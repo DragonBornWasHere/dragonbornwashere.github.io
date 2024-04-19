@@ -1382,39 +1382,41 @@ Game.Launch=function()
 		/*=====================================================================================
 		BAKERY NAME
 		=======================================================================================*/
-	Game.RandomBakeryName=function()
-{
-	return (Math.random()>0.05?(choose(['Magic','Fantastic','Fancy','Sassy','Snazzy','Pretty','Cute','Pirate','Ninja','Zombie','Robot','Radical','Urban','Cool','Hella','Sweet','Awful','Double','Triple','Turbo','Techno','Disco','Electro','Dancing','Wonder','Mutant','Space','Science','Medieval','Future','Captain','Bearded','Lovely','Tiny','Big','Fire','Water','Frozen','Metal','Plastic','Solid','Liquid','Moldy','Shiny','Happy','Happy Little','Slimy','Tasty','Delicious','Hungry','Greedy','Lethal','Professor','Doctor','Power','Chocolate','Crumbly','Choklit','Righteous','Glorious','Mnemonic','Psychic','Frenetic','Hectic','Crazy','Royal','El','Von'])+' '):'Mc')+choose(['Cookie','Biscuit','Muffin','Scone','Cupcake','Pancake','Chip','Sprocket','Gizmo','Puppet','Mitten','Sock','Teapot','Mystery','Baker','Cook','Grandma','Click','Clicker','Spaceship','Factory','Portal','Machine','Experiment','Monster','Panic','Burglar','Bandit','Booty','Potato','Pizza','Burger','Sausage','Meatball','Spaghetti','Macaroni','Kitten','Puppy','Giraffe','Zebra','Parrot','Dolphin','Duckling','Sloth','Turtle','Goblin','Pixie','Gnome','Computer','Pirate','Ninja','Zombie','Robot']);
-}
-Game.GetBakeryName=function() {return Game.RandomBakeryName();}
-Game.bakeryName=Game.GetBakeryName();
-Game.bakeryNameL=l('bakeryName');
-Game.bakeryNameL.innerHTML=Game.bakeryName+'\'s bakery';
-Game.bakeryNameSet=function(what)
-{
-	Game.bakeryName=what.replace(/\W+/g,' ');
-	Game.bakeryName=Game.bakeryName.substring(0,28);
-	Game.bakeryNameRefresh();
-}
-Game.bakeryNameRefresh=function()
-{
-	var name=Game.bakeryName;
-	if (name.slice(-1).toLowerCase()=='s') name+='\' bakery'; else name+='\'s bakery';
-	Game.bakeryNameL.innerHTML=name;
-	name=Game.bakeryName.toLowerCase();
-	if (name=='orteil') Game.Win('God complex');
-	if (name.indexOf('adminpower',name.length-('adminpower').length)>0 && !Game.adminpower) Game.AdminPower(); // Change here
-	Game.recalculateGains=1;
-}
-Game.bakeryNamePrompt=function()
-{
-	Game.Prompt('<h3>Name your bakery</h3><div class="block" style="text-align:center;">What should your bakery\'s name be?</div><div class="block"><input type="text" style="text-align:center;width:100%;" id="bakeryNameInput" value="'+Game.bakeryName+'"/></div>',[['Confirm','if (l(\'bakeryNameInput\').value.length>0) {Game.bakeryNameSet(l(\'bakeryNameInput\').value);Game.Win(\'What\\\'s in a name\');Game.ClosePrompt();}'],['Random','Game.bakeryNamePromptRandom();'],'Cancel']);
-	l('bakeryNameInput').focus();
-	l('bakeryNameInput').select();
-}
-Game.bakeryNamePromptRandom=function()
-{
-	l('b
+		Game.RandomBakeryName=function()
+		{
+			return (Math.random()>0.05?(choose(['Magic','Fantastic','Fancy','Sassy','Snazzy','Pretty','Cute','Pirate','Ninja','Zombie','Robot','Radical','Urban','Cool','Hella','Sweet','Awful','Double','Triple','Turbo','Techno','Disco','Electro','Dancing','Wonder','Mutant','Space','Science','Medieval','Future','Captain','Bearded','Lovely','Tiny','Big','Fire','Water','Frozen','Metal','Plastic','Solid','Liquid','Moldy','Shiny','Happy','Happy Little','Slimy','Tasty','Delicious','Hungry','Greedy','Lethal','Professor','Doctor','Power','Chocolate','Crumbly','Choklit','Righteous','Glorious','Mnemonic','Psychic','Frenetic','Hectic','Crazy','Royal','El','Von'])+' '):'Mc')+choose(['Cookie','Biscuit','Muffin','Scone','Cupcake','Pancake','Chip','Sprocket','Gizmo','Puppet','Mitten','Sock','Teapot','Mystery','Baker','Cook','Grandma','Click','Clicker','Spaceship','Factory','Portal','Machine','Experiment','Monster','Panic','Burglar','Bandit','Booty','Potato','Pizza','Burger','Sausage','Meatball','Spaghetti','Macaroni','Kitten','Puppy','Giraffe','Zebra','Parrot','Dolphin','Duckling','Sloth','Turtle','Goblin','Pixie','Gnome','Computer','Pirate','Ninja','Zombie','Robot']);
+		}
+		Game.GetBakeryName=function() {return Game.RandomBakeryName();}
+		Game.bakeryName=Game.GetBakeryName();
+		Game.bakeryNameL=l('bakeryName');
+		Game.bakeryNameL.innerHTML=Game.bakeryName+'\'s bakery';
+		Game.bakeryNameSet=function(what)
+		{
+			Game.bakeryName=what.replace(/\W+/g,' ');
+			Game.bakeryName=Game.bakeryName.substring(0,28);
+			Game.bakeryNameRefresh();
+		}
+		Game.bakeryNameRefresh=function()
+		{
+			var name=Game.bakeryName;
+			if (name.slice(-1).toLowerCase()=='s') name+='\' bakery'; else name+='\'s bakery';
+			Game.bakeryNameL.innerHTML=name;
+			name=Game.bakeryName.toLowerCase();
+			if (name=='orteil') Game.Win('God complex');
+			if (name.indexOf('saysopensesame',name.length-('saysopensesame').length)>0 && !Game.sesame) Game.OpenSesame();
+			Game.recalculateGains=1;
+		}
+		Game.bakeryNamePrompt=function()
+		{
+			Game.Prompt('<h3>Name your bakery</h3><div class="block" style="text-align:center;">What should your bakery\'s name be?</div><div class="block"><input type="text" style="text-align:center;width:100%;" id="bakeryNameInput" value="'+Game.bakeryName+'"/></div>',[['Confirm','if (l(\'bakeryNameInput\').value.length>0) {Game.bakeryNameSet(l(\'bakeryNameInput\').value);Game.Win(\'What\\\'s in a name\');Game.ClosePrompt();}'],['Random','Game.bakeryNamePromptRandom();'],'Cancel']);
+			l('bakeryNameInput').focus();
+			l('bakeryNameInput').select();
+		}
+		Game.bakeryNamePromptRandom=function()
+		{
+			l('bakeryNameInput').value=Game.RandomBakeryName();
+		}
+		AddEvent(Game.bakeryNameL,'click',Game.bakeryNamePrompt);
 		
 		
 		/*=====================================================================================
